@@ -1,0 +1,6 @@
+<h1>Hier finden Sie alle Ihre Notizen</h1>
+<div class="ui middle aligned selection divided list">
+  @for (note of notes; track note.title){
+    <a class="item kwm-note-list-item" [note]="note" [routerLink]="[note.id]"></a>
+  }
+</div>

@@ -1,0 +1,34 @@
+
+<form class="ui large form" [formGroup]="todo_entryForm" (ngSubmit)="submitFormTodo()">
+  <input type="hidden" formControlName="id">
+  <div class="field">
+    <label>ToDo-Titel</label>
+    <input formControlName="title">
+    @if (errors['title']) {
+      <div class="ui negative message"> {{ errors['title'] }}</div>
+    }
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <input formControlName="description">
+  </div>
+  <div class="field">
+    <label>Fälligkeitsdatum</label>
+    <input type="date" formControlName="due_date">
+  </div>
+  <div>
+    <label>zuweisen an...</label>
+    <select formControlName="note_id" class="ui fluid dropdown">
+      <option value="">Keine Notiz ausgewählt</option>
+      @for(note of notes; track note){
+        <option value="{{note.id}}">{{note.title}}</option>
+      }
+    </select>
+  </div>
+  <button type="submit" class="ui button" [disabled]="todo_entryForm.invalid">Speichern</button>
+
+</form>
+<button class="ui red2 button" [routerLink]="['/admin']">Zurück</button>
+
+
+

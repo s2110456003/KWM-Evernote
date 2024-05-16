@@ -1,0 +1,22 @@
+<div class="ui six item tabs menu">
+  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+  <a routerLink="registers" routerLinkActive="active" class="item">Register</a>
+  <a routerLink="notes" routerLinkActive="active" class="item">Notizen</a>
+  <a routerLink="todo_entries" routerLinkActive="active" class="item">ToDo-Entries</a>
+
+  @if(isLoggedIn()){
+    <a routerLink="admin" routerLinkActive="active"
+       class="item">Administration</a>
+  }
+
+  <a routerLink="login" routerLinkActive="active"
+     class="item">{{getLoginLabel()}}</a>
+</div>
+<div class="ui container">
+  <router-outlet></router-outlet>
+</div>
+<footer class="ui footer">
+  <div class="footer-content">
+    <p> 2024 KWM-Evernote. Berger Laura.</p>
+  </div>
+</footer>

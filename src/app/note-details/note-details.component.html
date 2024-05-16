@@ -1,0 +1,40 @@
+<!-- note-details.component.html -->
+<div *ngIf="note">
+  <div class="ui grid">
+    <div class="four wide column">
+      <img *ngIf="note.images && note.images[0]" class="ui large image" [src]="note.images[0].url">
+    </div>
+    <div class="twelve wide column">
+      <h1 class="ui header">{{ note.title }}</h1>
+      <h3 class="ui header">{{ note.description }}</h3>
+
+      <!-- Anzeige der zugeordneten Todos -->
+      <ul *ngIf="todoEntries?.length">
+        <h3>Zugeordnete Todos</h3>
+
+        <div *ngFor="let todo of todoEntries">
+          <!--<div *ngIf="isTodoLinkedToNote(todo)"> -->
+            <a [routerLink]="['/todo_entries', todo.id]">
+              <span>{{ todo.title }}</span>
+              <span *ngIf="todo.due_date"> (Fällig am: {{ todo.due_date}})</span>
+            </a>
+         <!-- </div>-->
+        </div>
+      </ul>
+
+      <!-- Anzeige der zugeordneten Tags -->
+      <div *ngIf="note.tags && note.tags.length > 0">
+        <h3>Zugeordnete Tags</h3>
+        <ul>
+          <div *ngFor="let tag of note.tags">{{ tag.category }}</div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="authService.isLoggedIn()">
+    <button class="ui red button" (click)="removeNote()"><i>Notiz löschen</i></button>
+    <a class="ui primary button" [routerLink]="['/admin/note-form', note.id]"><i>Notiz bearbeiten</i></a>
+  </div>
+  <button [routerLink]="'/notes'" class="ui red2 button">Zurück zur Liste</button>
+</div>

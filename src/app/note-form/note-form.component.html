@@ -1,0 +1,63 @@
+<form class="ui large form" [formGroup]="noteForm" (ngSubmit)="submitForm()">
+  <input type="hidden" formControlName="id">
+  <div class="field">
+    <label>Notiz-Titel</label>
+    <input formControlName="title">
+    @if (errors['title']) {
+      <div class="ui negative message"> {{ errors['title'] }}</div>
+    }
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <input formControlName="description">
+  </div>
+
+    <label>zuweisen an Register...</label>
+    <select formControlName="register_id" class="ui fluid dropdown">
+      <option value="">Kein Register ausgewählt</option>
+      @for(register of registers; track register){
+        <option value="{{register.id}}">{{register.title}}</option>
+      }
+    </select>
+
+
+ <div>
+    <label>Tag zuweisen...</label>
+    <select formControlName="tag_id" class="ui fluid dropdown">
+      <option value="">Kein Tag ausgewählt</option>
+      @for(tag of tags; track tag){
+        <option value="{{tag.id}}">{{tag.category}}</option>
+      }
+    </select>
+  </div>
+
+
+  <div class="field">
+    <label>Bilder</label>
+    <div formArrayName="images">
+      @for(control of images.controls; let i =$index, l=$last; track control){
+        <div class="fields" [formGroupName]="i">
+          <input type="hidden" formControlName="id">
+          <div class="nine wide field">
+            <input formControlName="url" placeholder="http://bild{{i+1}}_url">
+          </div>
+          <div class="six wide field">
+            <input formControlName="title" placeholder="Bild{{i+1}}_Titel">
+          </div>
+          @if(l){
+            <div class="one wide field">
+              <button (click)="addThumbnailControl()" class="ui large button" type="button">+</button>
+            </div>
+          }
+
+        </div>
+      }
+    </div>
+    @if (errors['images']){
+      <div class="ui negative message">{{ errors['images'] }}</div>
+    }
+  </div>
+
+  <button type="submit" class="ui button" [disabled]="noteForm.invalid">Speichern</button>
+</form>
+<button class="ui red2 button" [routerLink]="['../admin']">Zurück</button>

@@ -1,0 +1,6 @@
+<h1>Hier finden Sie alle Ihre Listen</h1>
+<div class="ui middle aligned selection divided list">
+  @for (register of registers; track register.title){
+    <a class="item kwm-register-list-item" [register]="register" [routerLink]="[register.id]"></a>
+  }
+</div>

@@ -1,0 +1,30 @@
+<div class="ui search"  [ngClass]="{ loading: isLoading }">
+  <div class="ui icon input">
+    <input (keyup)="keyup.emit(searchTerm.value)" #searchTerm class="prompt" type="text" placeholder="Suche...">
+    <i class="search icon"></i>
+  </div>
+  <div class="results transition" [ngClass]="{ visible: foundNotes.length }">
+
+    @for (note of foundNotes; track note){
+      <a  href (click)="noteSelected.emit(note); false" class="result">
+        <div class="content">
+          <div class="title" >{{ note.title }}</div>
+        </div>
+      </a>
+    }
+  </div>
+
+
+  <div class="results transition" [ngClass]="{ visible: foundToDo_entries.length }">
+
+    @for (todo_entry of foundToDo_entries; track todo_entry){
+      <a href (click)="todo_entrySelected.emit(todo_entry); false" class="result">
+        <div class="content">
+          <div class="title" >{{ todo_entry.title }}</div>
+        </div>
+      </a>
+    }
+  </div>
+
+
+</div>

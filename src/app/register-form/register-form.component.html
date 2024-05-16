@@ -1,0 +1,19 @@
+
+<form class="ui large form" [formGroup]="registerForm" (ngSubmit)="submitFormRegister()">
+  <input type="hidden" formControlName="id">
+  <div class="field">
+    <label>Register-Titel</label>
+    <input formControlName="title">
+    @if (errors['title']) {
+      <div class="ui negative message"> {{ errors['title'] }}</div>
+    }
+  </div>
+  <button type="submit" class="ui button" [disabled]="registerForm.invalid">Speichern</button>
+
+</form>
+<button class="ui red2 button" [routerLink]="['/admin']">
+  Zurück
+</button>
+
+
+

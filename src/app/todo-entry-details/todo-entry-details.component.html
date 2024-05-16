@@ -1,0 +1,27 @@
+@if(todo_entry){
+  <div class="ui grid">
+    <div class="four wide column">
+      @if(todo_entry.images && todo_entry.images[0]){
+        <img class="ui large image" [src]="todo_entry.images[0].url">
+      }
+    </div>
+    <div class="twelve wide column">
+      <h1 class="ui header">{{ todo_entry.title }}</h1>
+      <h3 class="ui header">{{ todo_entry.description }}</h3>
+      <p *ngIf="todo_entry.due_date"><strong>Fällig am:</strong> {{ todo_entry.due_date}}</p>
+
+    </div>
+  </div>
+  @if(authService.isLoggedIn()){
+  <button [routerLink]="'/todo_entries'" class="ui red button" (click)="removeToDoEntry()">
+    <i >ToDo löschen</i>
+  </button>
+
+
+  <a class="ui primary button" [routerLink]="['/admin/todo-form', todo_entry.id]">
+    <i>ToDo bearbeiten</i>
+  </a>
+  }
+  <div><button [routerLink]="'/todo_entries'" class="ui red2 button"> Zurück zur Liste</button></div>
+
+}

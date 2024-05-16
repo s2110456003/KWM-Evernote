@@ -1,0 +1,15 @@
+<form class="ui large form" [formGroup]="tagForm" (ngSubmit)="submitFormTag()">
+  <input type="hidden" formControlName="id">
+  <div class="field">
+    <label>Tag-Category</label>
+    <input formControlName="category">
+    @if (errors['category']) {
+      <div class="ui negative message"> {{ errors['category'] }}</div>
+    }
+  </div>
+  <button type="submit" class="ui button" [disabled]="tagForm.invalid">Speichern</button>
+
+</form>
+<button class="ui red2 button" [routerLink]="['/admin']">
+  Zurück
+</button>

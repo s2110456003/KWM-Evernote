@@ -1,0 +1,11 @@
+@if (todo_entry) {
+  @if (todo_entry.images && todo_entry.images[0]) {
+    <img class="ui tiny image" [src]="todo_entry.images[0].url" kwmZoom/>
+  }
+  <div class="content">
+    <div class="header">{{ todo_entry.title }}</div>
+    <div class="description"> {{ todo_entry.description }}</div>
+    <div class="due_date">due to {{ todo_entry?.due_date }}</div>
+  </div>
+}
+

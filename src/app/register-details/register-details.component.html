@@ -1,0 +1,26 @@
+@if(register){
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <h1 class="ui header">{{register.title}}</h1>
+      <ul *ngIf="register.notes && register.notes.length > 0">
+        <div *ngFor="let note of register.notes">
+          <a [routerLink]="['/notes', note.id]">{{ note.title }}</a>
+        </div>
+      </ul>
+      <p *ngIf="register.notes.length === 0">Keine Notizen zugeordnet.</p>
+    </div>
+  </div>
+
+
+  @if(authService.isLoggedIn()){
+    <button [routerLink]="'/registers'" class="ui red button" (click)="removeRegister()">
+      <i >Register löschen</i>
+    </button>
+
+
+    <a class="ui primary button" [routerLink]="['/admin/register-form', register.id]">
+      <i>Register bearbeiten</i>
+    </a>
+  }
+  <div><button [routerLink]="'/registers'" class="ui red2 button"> Zurück zur Liste</button></div>
+}

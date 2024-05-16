@@ -1,0 +1,6 @@
+<h1>Hier finden Sie alle Ihre ToDo Einträge</h1>
+<div class="ui middle aligned selection divided list">
+  @for (todo_entry of todo_entries; track todo_entry.title){
+    <a class="item kwm-todo_entry-list-item" [todo_entry]="todo_entry" [routerLink]="[todo_entry.id]"></a>
+  }
+</div>
